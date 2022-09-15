@@ -27,7 +27,7 @@
     "@angular/platform-browser": "5.2.6",
     "@angular/platform-browser-dynamic": "5.2.6",
     "@angular/router": "5.2.6",
-    "bootstrap": "^3.3.7",
+    "bootstrap": "^3.4.1",
     "chart.js": "^2.7.1",
     "chartjs": "^0.3.24",
     "clone": "^2.1.1",
