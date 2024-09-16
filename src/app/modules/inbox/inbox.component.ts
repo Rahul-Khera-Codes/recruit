@@ -40,6 +40,7 @@ import { AddCandidateComponent } from './../add-candidate/add-candidate.componen
 import { RemoveMailsDialogComponent } from './../remove-mails-dialog/remove-mails-dialog.component';
 import { ArchiveMailComponent } from './../archive-mail/archive-mail.component';
 import { config } from './../../config/config';
+import { SelectShortListedWeightageModalComponent } from '../../modules/select-short-listed-weightage-modal/select-short-listed-weightage-modal.component';
 @Component({
     selector: 'app-inbox',
     templateUrl: './inbox.component.html',
@@ -262,7 +263,7 @@ export class InboxComponent implements OnInit, OnDestroy {
             height: '90%',
             width: '70%'
         });
-        if(this.emailParentId == null || this.emailParentId ==0 || this.emailParentId == "null" || this.emailParentId == undefined) {
+        if (this.emailParentId == null || this.emailParentId == 0 || this.emailParentId == "null" || this.emailParentId == undefined) {
             this.dialogRef.componentInstance.parentId = 0;
         } else {
             this.dialogRef.componentInstance.parentId = this.emailParentId;
@@ -390,13 +391,12 @@ export class InboxComponent implements OnInit, OnDestroy {
     parseOldCvs() {
         this._dialogService.openConfirmationBox('Are you sure ?').then((res) => {
             if (res === 'yes') {
-                this.getemails.processOldCvs(this.emailParentId).subscribe((response) => {}, (err) => {
+                this.getemails.processOldCvs(this.emailParentId).subscribe((response) => { }, (err) => {
                     console.log(err)
                 });
             }
         });
     }
-    
     sendEmailToAll(notGenuine?) {
         this.dialogRef = this.dialog.open(ComposeEmailComponent, {
             height: '90%',
@@ -627,7 +627,7 @@ export class InboxComponent implements OnInit, OnDestroy {
         this._dialogService.openConfirmationBox('Are you sure want to close this job profile,\n this operation cannot be undone?').then((res) => {
             if (res === 'yes') {
                 const body = {
-                    id: this.selectedTag ,
+                    id: this.selectedTag,
                     status: this.tagStatus
                 };
                 this.getemails.closeJobProfile(body).subscribe((data) => {
@@ -657,9 +657,29 @@ export class InboxComponent implements OnInit, OnDestroy {
 
     showUnReadOnly() {
         this.data['unread'] = true;
-        this.getemails.getEmailList(this.data).subscribe((res)=> {
+        this.getemails.getEmailList(this.data).subscribe((res) => {
             this.addSelectedFieldInEmailList(res);
         })
     }
 
+    openShortListedCandidateWeightage() {
+        this.dialogRef = this.dialog.open(SelectShortListedWeightageModalComponent, {
+            width: "60vw"
+        });
+        this.dialogRef.componentInstance.getWeightageValue.subscribe((value) => {
+            const apiData = { userIds: [] };
+            this.emaillist.data.forEach(e => {
+                if (e.weightage > value || e.weightage == value) {
+                    apiData['userIds'].push(e._id)
+                }
+            });
+            this.getemails.sendShortListedUserId(apiData).subscribe(res => {
+                if (res == 'success') {
+                    this.refresh();
+                }
+            }, (err) => {
+                console.log(err);
+            });
+        });
+    }
 }

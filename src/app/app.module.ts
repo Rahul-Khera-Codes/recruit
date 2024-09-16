@@ -211,6 +211,8 @@ import { CandidateScheduleComponent } from './modules/candidate-schedule/candida
 import { AddMobileNumberComponent } from './modules/add-mobile-number/add-mobile-number.component';
 import { JobProfileParameterComponent } from './modules/job-profile-parameter/job-profile-parameter.component';
 import { AddParameterModalComponent } from './modules/add-parameter-modal/add-parameter-modal.component';
+import { CandidateTestLinkComponent } from './modules/candidate-test-link/candidate-test-link.component';
+import { SelectShortListedWeightageModalComponent } from './modules/select-short-listed-weightage-modal/select-short-listed-weightage-modal.component';
 @NgModule({
     declarations: [
         AppComponent,
@@ -298,7 +300,9 @@ import { AddParameterModalComponent } from './modules/add-parameter-modal/add-pa
         CompanyProfileComponent,
         CandidateScheduleComponent,
         AddMobileNumberComponent,
-        AddParameterModalComponent
+        AddParameterModalComponent,
+        CandidateTestLinkComponent,
+        SelectShortListedWeightageModalComponent
     ],
     imports: [
         BrowserModule,
@@ -389,7 +393,8 @@ import { AddParameterModalComponent } from './modules/add-parameter-modal/add-pa
         ViewTestPaperComponent,
         ChangeRoundComponent,
         AddMobileNumberComponent,
-        AddParameterModalComponent
+        AddParameterModalComponent,
+        SelectShortListedWeightageModalComponent
     ],
     bootstrap: [AppComponent]
 })

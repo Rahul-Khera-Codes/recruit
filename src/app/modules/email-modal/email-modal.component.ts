@@ -89,7 +89,7 @@ export class EmailModalComponent implements OnInit, OnDestroy, AfterContentInit 
             'mongo_id': this.selectedEmail['_id']
         };
         this.tagUpdate.getCandidateHistory(this.selectedEmail['_id']).subscribe((data) => {
-            this.selectedEmail = data.data[0];
+            this.selectedEmail = data.data[0];        
             if (this.selectedEmail.callingStatus) {
                 const callData = {'callingStatus': this.selectedEmail.callingStatus};
                 this.color = this.selectedEmail.callingStatus;

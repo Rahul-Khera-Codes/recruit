@@ -51,6 +51,7 @@ export class EmailboxComponent implements OnInit {
     isRoundsTag = false;
     color: string;
     callStatus = config.callStatus;
+
     constructor(private _localStorageService: LocalStorageService, private assignEmail: ImapMailsService, public dialog: MatDialog, public commonService: CommonService, public _dialogService: DialogService, public _snackBar: MatSnackBar) { }
 
     ngOnInit() {

@@ -1,0 +1,24 @@
+<div class="modal-body">
+  <div mat-dialog-title>
+    <h3 class="heading ">Select Shortlisted Candidate By Weightage</h3>
+  </div>
+  <mat-dialog-content>
+    <form class="add-weightage" [formGroup]="weightageForm">
+      <div class="col-sm-6">
+        <mat-form-field>
+          <input matInput type="number" min="1" max="10" name="weightage" id="weightage" placeholder="Weightage"
+            formControlName="weightage" required>
+          <mat-error *ngIf="weightageForm.value > '10'">Max
+            value = 10</mat-error>
+        </mat-form-field>
+      </div>
+    </form>
+  </mat-dialog-content>
+  <mat-dialog-actions>
+    <div id="tagBtn" class="col-sm-12 text-right  btn-panel">
+      <button mat-raised-button id="close" (click)="close()">Close</button>
+      <button mat-raised-button id="save" color=primary [disabled]="weightageForm.invalid"
+        (click)="onSubmit(weightageForm.value)">Submit</button>
+    </div>
+  </mat-dialog-actions>
+</div>
