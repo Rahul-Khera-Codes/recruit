@@ -1130,6 +1130,19 @@ export class ImapMailsService {
                 return Observable.throw(error.json() || 'Server error');
             });
     }
+    generateTestLinkByCandidate(id): Observable<any> {
+        this.increaseAPiCount();
+        return this.http.get(environment['apibase'] + `exams/generateLink/${id}?startTest=true`)
+            .map((res: Response) => {
+                this.decreaseAPiCount();
+                return res.json();
+            })
+            .catch((error: any) => {
+                this.count = 0;
+                this.apiEndEvent.emit();
+                return Observable.throw(error.json() || 'Server error');
+            });
+    }
     getCandidateDetails(id): Observable<any> {
         this.increaseAPiCount();
         return this.Intercepted.get(environment['apibase'] + `exams/candidateDetails/${id}`)
@@ -1628,4 +1641,18 @@ export class ImapMailsService {
             })
     }
 
+
+    getexamAutomation(userId,notificationId): Observable<any> {
+        this.increaseAPiCount();
+        return this.Intercepted.get(environment['apibase'] + `exams/examAutomation/${userId}?notificationId=${notificationId}`)
+            .map((res: Response) => {
+                this.decreaseAPiCount();
+                return res.json();
+            })
+            .catch((error: any) => {
+                this.count = 0;
+                this.apiEndEvent.emit();
+                return Observable.throw(error.json() || 'Server error');
+            });
+    }
 }

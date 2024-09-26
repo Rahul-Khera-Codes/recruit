@@ -43,6 +43,23 @@ html, body {
         stroke: black;
     }
 }
+
+.commonSpinner2 {
+  width: 40px !important;
+  height: 40px !important;
+  svg {
+    width: 40px!important;
+    height: 40px!important;
+}
+  path {
+      stroke: black;
+  }
+  left: calc(50% - 30px);
+  top: 250px;
+}
+
+
+
 .mat-sidenav-content {
     transform: none !important;
 }

@@ -42,15 +42,16 @@ import { WalkinCandidateComponent } from './modules/walkin-candidate/walkin-cand
 import { TestSetsComponent } from './modules/test-sets/test-sets.component';
 import { AppDeepLinkComponent } from './modules/app-deep-link/app-deep-link.component';
 import { CompanyProfileComponent } from './modules/company-profile/company-profile.component';
-import { ScheduleInterviewComponent } from './modules/schedule-interview/schedule-interview.component';
 import { CandidateScheduleComponent } from './modules/candidate-schedule/candidate-schedule.component';
-import { JobProfileParameterComponent } from'./modules/job-profile-parameter/job-profile-parameter.component';
+import { JobProfileParameterComponent } from './modules/job-profile-parameter/job-profile-parameter.component';
+import { CandidateTestLinkComponent } from './modules/candidate-test-link/candidate-test-link.component';
 
-export const routes: Route[] = [{
-    path: '',
-    pathMatch: 'full',
-    redirectTo: 'core'
-},
+export const routes: Route[] = [
+    {
+        path: '',
+        pathMatch: 'full',
+        redirectTo: 'core'
+    },
     {
         path: 'candidate',
         component: CandidateComponent,
@@ -76,7 +77,7 @@ export const routes: Route[] = [{
         pathMatch: 'full'
     },
     {
-        path:'ThankYou',
+        path: 'ThankYou',
         component: ThankYouComponent,
         pathMatch: 'full'
     },
@@ -89,136 +90,136 @@ export const routes: Route[] = [{
             redirectTo: 'inbox',
             pathMatch: 'full'
         },
-            {
-                path: 'inbox',
-                component: InboxComponent,
-                canActivate: [LoginRouteGuard],
-            },
-            {
-                path: 'email/:id',
-                pathMatch: 'full',
-                component: EmailModalComponent,
-                canActivate: [LoginRouteGuard]
-            },
-            {
-                path: 'dashboard',
-                component: DashboardComponent,
-                canActivate: [LoginRouteGuard],
-                data : { isHome : false }
-            },
-            {
-                path: 'email-tracking',
-                component: EmailTrackingComponent,
-                canActivate: [LoginRouteGuard]
-            },
-            {
-                path: 'interviewee-inbox',
-                component: IntervieweeInboxComponent,
-                canActivate: [LoginRouteGuard]
-            },
-            {
-                path: 'intervieweeCandidate/:id',
-                pathMatch: 'full',
-                component: IntervieweeCandidateComponent,
+        {
+            path: 'inbox',
+            component: InboxComponent,
+            canActivate: [LoginRouteGuard],
+        },
+        {
+            path: 'email/:id',
+            pathMatch: 'full',
+            component: EmailModalComponent,
+            canActivate: [LoginRouteGuard]
+        },
+        {
+            path: 'dashboard',
+            component: DashboardComponent,
+            canActivate: [LoginRouteGuard],
+            data: { isHome: false }
+        },
+        {
+            path: 'email-tracking',
+            component: EmailTrackingComponent,
+            canActivate: [LoginRouteGuard]
+        },
+        {
+            path: 'interviewee-inbox',
+            component: IntervieweeInboxComponent,
+            canActivate: [LoginRouteGuard]
+        },
+        {
+            path: 'intervieweeCandidate/:id',
+            pathMatch: 'full',
+            component: IntervieweeCandidateComponent,
+            canActivate: [LoginRouteGuard]
+        }, {
+            path: 'setting',
+            component: SettingComponent,
+            canActivate: [LoginRouteGuard],
+            children: [{
+                path: '',
+                redirectTo: 'imap',
+                pathMatch: 'full'
+            }, {
+                path: 'imap',
+                component: ImapServerComponent,
                 canActivate: [LoginRouteGuard]
             }, {
-                path: 'setting',
-                component: SettingComponent,
-                canActivate: [LoginRouteGuard],
-                children: [{
-                    path: '',
-                    redirectTo: 'imap',
-                    pathMatch: 'full'
-                }, {
-                    path: 'imap',
-                    component: ImapServerComponent,
-                    canActivate: [LoginRouteGuard]
-                }, {
-                    path: 'smtp',
-                    component: SmtpServerComponent,
-                    canActivate: [LoginRouteGuard]
-                }, {
-                    path: 'emailtemplate',
-                    component: EmailTemplatesComponent,
-                    canActivate: [LoginRouteGuard]
-                }, {
-                    path: 'emailvariable',
-                    component: EmailVariablesComponent,
-                    canActivate: [LoginRouteGuard]
-                }, {
-                    path: 'tagsetting',
-                    component: TagSettingComponent,
-                    canActivate: [LoginRouteGuard]
-                }, {
-                    path: 'action',
-                    component: ActionsComponent,
-                    canActivate: [LoginRouteGuard]
-                }, {
-                    path: 'manageuser',
-                    component: ManageUsersComponent,
-                    canActivate: [LoginRouteGuard]
-                }, {
-                    path: 'automaticTags',
-                    component: AutomaticTagComponent,
-                    canActivate: [LoginRouteGuard]
-                }, {
-                    path: 'jobProfileTags',
-                    component: JobProfileTagComponent,
-                    canActivate: [LoginRouteGuard]
-                }, {
-                    path: 'companyProfile',
-                    component: CompanyProfileComponent,
-                    canActivate: [LoginRouteGuard]
-                }, {
-                    path: 'resetPassword',
-                    component: ResetPasswordComponent,
-                    canActivate: [LoginRouteGuard]
-                }, {
-                    path: 'usersList',
-                    component: UsersListComponent,
-                    canActivate: [LoginRouteGuard]
-                }, {
-                    path: 'useractivity',
-                    component: UserActivityLogComponent,
-                    canActivate: [LoginRouteGuard]
-                }, {
-                    path: 'emailLogs',
-                    component: EmailLogsComponent,
-                    canActivate: [LoginRouteGuard]
-                }, {
-                    path: 'slackinfo',
-                    component: SlackInfoComponent ,
-                    canActivate: [LoginRouteGuard]
-                }, {
-                    path: 'spam',
-                    component: SpamComponent,
-                    canActivate: [LoginRouteGuard]
-                }, {
-                    path: 'createQuestion',
-                    component: CreateQuestionComponent,
-                    canActivate: [LoginRouteGuard]
-                }, {
-                    path: 'candidateScore',
-                    component: CandidateScoreComponent,
-                    canActivate: [LoginRouteGuard]
-                }, {
-                    path: 'pendingCandidate',
-                    component: PendingCandidateComponent,
-                    canActivate: [LoginRouteGuard]
-                }, {
-                    path: 'testSet',
-                    component: TestSetsComponent,
-                    canActivate: [LoginRouteGuard]
-                } , {
-                    path : 'jobProfileParameter',
-                    component : JobProfileParameterComponent,
-                    canActivate : [LoginRouteGuard]
-                }]
-            }, {
-                path: 'changepassword',
-                component: ChangePasswordComponent,
+                path: 'smtp',
+                component: SmtpServerComponent,
                 canActivate: [LoginRouteGuard]
-            }
+            }, {
+                path: 'emailtemplate',
+                component: EmailTemplatesComponent,
+                canActivate: [LoginRouteGuard]
+            }, {
+                path: 'emailvariable',
+                component: EmailVariablesComponent,
+                canActivate: [LoginRouteGuard]
+            }, {
+                path: 'tagsetting',
+                component: TagSettingComponent,
+                canActivate: [LoginRouteGuard]
+            }, {
+                path: 'action',
+                component: ActionsComponent,
+                canActivate: [LoginRouteGuard]
+            }, {
+                path: 'manageuser',
+                component: ManageUsersComponent,
+                canActivate: [LoginRouteGuard]
+            }, {
+                path: 'automaticTags',
+                component: AutomaticTagComponent,
+                canActivate: [LoginRouteGuard]
+            }, {
+                path: 'jobProfileTags',
+                component: JobProfileTagComponent,
+                canActivate: [LoginRouteGuard]
+            }, {
+                path: 'companyProfile',
+                component: CompanyProfileComponent,
+                canActivate: [LoginRouteGuard]
+            }, {
+                path: 'resetPassword',
+                component: ResetPasswordComponent,
+                canActivate: [LoginRouteGuard]
+            }, {
+                path: 'usersList',
+                component: UsersListComponent,
+                canActivate: [LoginRouteGuard]
+            }, {
+                path: 'useractivity',
+                component: UserActivityLogComponent,
+                canActivate: [LoginRouteGuard]
+            }, {
+                path: 'emailLogs',
+                component: EmailLogsComponent,
+                canActivate: [LoginRouteGuard]
+            }, {
+                path: 'slackinfo',
+                component: SlackInfoComponent,
+                canActivate: [LoginRouteGuard]
+            }, {
+                path: 'spam',
+                component: SpamComponent,
+                canActivate: [LoginRouteGuard]
+            }, {
+                path: 'createQuestion',
+                component: CreateQuestionComponent,
+                canActivate: [LoginRouteGuard]
+            }, {
+                path: 'candidateScore',
+                component: CandidateScoreComponent,
+                canActivate: [LoginRouteGuard]
+            }, {
+                path: 'pendingCandidate',
+                component: PendingCandidateComponent,
+                canActivate: [LoginRouteGuard]
+            }, {
+                path: 'testSet',
+                component: TestSetsComponent,
+                canActivate: [LoginRouteGuard]
+            }, {
+                path: 'jobProfileParameter',
+                component: JobProfileParameterComponent,
+                canActivate: [LoginRouteGuard]
+            }]
+        }, {
+            path: 'changepassword',
+            component: ChangePasswordComponent,
+            canActivate: [LoginRouteGuard]
+        }
 
         ]
     },
@@ -241,5 +242,9 @@ export const routes: Route[] = [{
     {
         path: 'candidate-schedule/:userId',
         component: CandidateScheduleComponent
+    },
+    {
+        path: 'candidate-test/:userId',
+        component: CandidateTestLinkComponent
     }
 ];
