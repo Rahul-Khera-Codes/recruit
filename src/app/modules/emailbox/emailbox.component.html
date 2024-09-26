@@ -9,7 +9,11 @@
     <mat-checkbox (change)="emailSelection()" [(ngModel)]="email.selected"></mat-checkbox>
   </div>
   <div class="detailloc" (click)="openEmails(email)">
-    <h5>{{countEmailSubject(email.subject)}}</h5>
+    <h5>{{countEmailSubject(email.subject)}} 
+      <small *ngIf="email.cvData && email.cvData.length">
+        <span *ngFor="let cvData of email.cvData" >Gender: <b>{{cvData.gender | titlecase}}</b></span>
+      </small>
+    </h5>
     <h6 class="inline">
       <span *ngIf="email.examScore || email.examScore ==0">Exam Score: {{email.examScore}},</span>
       <span class="badge" *ngIf="email && isSearching && email['tagTitle']">{{email['tagTitle']}}</span>
